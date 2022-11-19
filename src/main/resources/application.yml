@@ -1,0 +1,48 @@
+server:
+  port: 44333
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: [your-database-url]
+    username: ciyu
+    password: CiyuConquersAll
+    hikari:
+      connection-timeout: 60000
+      validation-timeout: 3000
+      idle-timeout: 60000
+      login-timeout: 5
+      max-lifetime: 60000
+      maximum-pool-size: 10
+      minimum-idle: 10
+      read-only: false
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  elasticsearch:
+    uris: [your-elasticsearch-url]
+    username: [your-elasticsearch-username]
+    password: [your-elasticsearch-password]
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+logging:
+  level:
+    tracer: TRACE
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
+      springframework:
+        data:
+          elasticsearch:
+            client:
+              WIRE: trace
+springdoc:
+  api-docs:
+    path: /api-docs
